@@ -19,13 +19,14 @@ from flaskext.mysql import MySQL
 #assign a Flask Class
 app=Flask(__name__)
 mysql = MySQL()
+mysql.init_app(app)
 global lastaddress
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'admin'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
 app.config['MYSQL_DATABASE_DB'] = 'hyperlocal'
-# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 
 @app.route('/')
