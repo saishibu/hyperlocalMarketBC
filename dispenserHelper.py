@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # Import QRCode from pyqrcode 
-import pyqrcode 
+# import pyqrcode 
 # from pyqrcode import QRCode 
 
 #Import IOTA Components
