@@ -11,22 +11,45 @@
 from flask import Flask, jsonify,request
 import os
 import dispenserHelper as dh
+from flaskext.mysql import MySQL
+# MySQL configurations
+app.config['MYSQL_DATABASE_USER'] = 'admin'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
+app.config['MYSQL_DATABASE_DB'] = 'hyperlocal'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+
 # import fuzzy
 #assign a Flask Class
 app=Flask(__name__)
 global lastaddress
 
-@app.route('/Dispenser/getAddress')
+@app.route('/')
+def welcome():
+	return "Welcome to Hyperlocal eMart, Shopping made simple. \n Login to continue."
+
+
+@app.route('/hlm/login/<uname>/<passw>')
+def login(uname,passw):
+	cur = mysql.connect().cursor()
+	cur.execute('SELECT user,pswd,bcaddress FROM user order by id ASC')
+	data=cur.fetchall()
+	if uname==data[0]:
+		if passw==data[1]:
+			return data[3]
+	else:
+		return 0
+
+@app.route('/hlm/getAddress')
 def getAddress():
 	address=dh.addressGen()
 	return str(address)
 
-@app.route('/Dispenser/getBalance/<addy>')
+@app.route('/hlm/getBalance/<addy>')
 def getbal(addy):
 	bal=dh.getBalance(addy)
 	return str(bal)
 
-@app.route('/Dispenser/sendData/<address>/<data>')
+@app.route('/hlm/sendData/<address>/<data>')
 def sendData(address,data):
 	
 	rc=dh.sendData(address,data)
@@ -37,7 +60,7 @@ def sendData(address,data):
 	else:
 		return "Transaction not processed"
 
-@app.route('/Dispenser/sendMoney/<address>/<data>/<money>')
+@app.route('/hlm/sendMoney/<address>/<data>/<money>')
 
 def sendMoney(address,data,money):
 	rc=dh.sendMoney(address,data,money)
