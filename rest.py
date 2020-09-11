@@ -43,7 +43,7 @@ def login(uname,passw):
 		if passw==data[1]:
 			return data[3]
 	else:
-		return 0
+		return '0'
 
 @app.route('/hlm/getAddress')
 def getAddress():
