@@ -42,7 +42,7 @@ def login(uname,passw):
 	print(data)
 	if uname==data[0]:
 		if passw==data[1]:
-			return data[3]
+			return data[2]
 	else:
 		return '0'
 
