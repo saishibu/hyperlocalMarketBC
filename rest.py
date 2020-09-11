@@ -12,16 +12,21 @@ from flask import Flask, jsonify,request
 import os
 import dispenserHelper as dh
 from flaskext.mysql import MySQL
+
+# import fuzzy
+
+
+#assign a Flask Class
+app=Flask(__name__)
+mysql = MySQL()
+global lastaddress
+
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'admin'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
 app.config['MYSQL_DATABASE_DB'] = 'hyperlocal'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
-# import fuzzy
-#assign a Flask Class
-app=Flask(__name__)
-global lastaddress
 
 @app.route('/')
 def welcome():
