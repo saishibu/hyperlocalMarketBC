@@ -39,10 +39,9 @@ def login(uname,passw):
 	cur = mysql.connect().cursor()
 	cur.execute('SELECT user,pswd,bcaddress FROM user order by id ASC')
 	data=cur.fetchone()
-	print(data)
 	if uname==data[0]:
 		if passw==data[1]:
-			return data[2]
+			return '1'
 	else:
 		return '0'
 
