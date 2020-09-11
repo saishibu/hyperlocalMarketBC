@@ -11,7 +11,7 @@
 from flask import Flask, jsonify,request
 import os
 import dispenserHelper as dh
-import fuzzy
+# import fuzzy
 #assign a Flask Class
 app=Flask(__name__)
 global lastaddress
@@ -48,35 +48,35 @@ def sendMoney(address,data,money):
 	else:
 		return "Transaction not processed"
 
-@app.route('/Dispenser/getCost/BS/<v1>/<v2>')
-def getCostBS(v1,v2):
-	cost=fuzzy.BS(int(v1),int(v2))
-	return str(cost)
+# @app.route('/Dispenser/getCost/BS/<v1>/<v2>')
+# def getCostBS(v1,v2):
+# 	cost=fuzzy.BS(int(v1),int(v2))
+# 	return str(cost)
 
-@app.route('/Dispenser/getCost/BP/<v1>/<v2>')
-def getCostBP(v1,v2):
-	cost=fuzzy.BP(int(v1),int(v2))
-	return str(cost)
+# @app.route('/Dispenser/getCost/BP/<v1>/<v2>')
+# def getCostBP(v1,v2):
+# 	cost=fuzzy.BP(int(v1),int(v2))
+# 	return str(cost)
 
-@app.route('/Dispenser/getCost/WP/<v1>/<v2>/<v3>')
-def getCostWP(v1,v2,v3):
-	cost=fuzzy.WP(int(v1),int(v2),int(v3))
-	return str(cost)
+# @app.route('/Dispenser/getCost/WP/<v1>/<v2>/<v3>')
+# def getCostWP(v1,v2,v3):
+# 	cost=fuzzy.WP(int(v1),int(v2),int(v3))
+# 	return str(cost)
 
-@app.route('/Dispenser/getCost/WS/<v1>/<v2>')
-def getCostWS(v1,v2,v3):
-	cost=fuzzy.WP(int(v1),int(v2))
-	return str(cost)
+# @app.route('/Dispenser/getCost/WS/<v1>/<v2>')
+# def getCostWS(v1,v2,v3):
+# 	cost=fuzzy.WP(int(v1),int(v2))
+# 	return str(cost)
 
-@app.route('/Dispenser/getCost/EP/<v1>/<v2>/<v3>')
-def getCostEP(v1,v2,v3):
-	cost=fuzzy.WP(int(v1),int(v2),int(v3))
-	return str(cost)
+# @app.route('/Dispenser/getCost/EP/<v1>/<v2>/<v3>')
+# def getCostEP(v1,v2,v3):
+# 	cost=fuzzy.WP(int(v1),int(v2),int(v3))
+# 	return str(cost)
 
-@app.route('/Dispenser/getCost/ES/<v1>/<v2>/<v3>/<v4>')
-def getCostES(v1,v2,v3,v4):
-	cost=fuzzy.WP(int(v1),int(v2),int(v3),int(v4))
-	return str(cost)
+# @app.route('/Dispenser/getCost/ES/<v1>/<v2>/<v3>/<v4>')
+# def getCostES(v1,v2,v3,v4):
+# 	cost=fuzzy.WP(int(v1),int(v2),int(v3),int(v4))
+# 	return str(cost)
 
 
 #Start the Flask program
