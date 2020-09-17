@@ -34,8 +34,8 @@ def welcome():
 	return "Welcome to Hyperlocal eMart, Shopping made simple. \n Login to continue."
 
 @app.route('/ep/<in1>/<in2>/<in3>')
-def ev2x(int(in1),int(in2),int(in3)):
-	cost=EP(in1,in2,in3)
+def ev2x(in1,in2,in3):
+	cost=EP(int(in1),int(in2),int(in3))
 	return str(cost)
 	
 @app.route('/hlm/login/<uname>/<passw>')
