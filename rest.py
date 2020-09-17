@@ -14,7 +14,7 @@ import dispenserHelper as dh
 from flaskext.mysql import MySQL
 
 # import fuzzy
-
+fromfuzzy import EP
 
 #assign a Flask Class
 app=Flask(__name__)
@@ -33,7 +33,11 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 def welcome():
 	return "Welcome to Hyperlocal eMart, Shopping made simple. \n Login to continue."
 
-
+@app.route('/ep/<in1>/<in2>/<in3>')
+def ev2x(in1,in2,in3):
+	cost=EP(in1,in2,in3)
+	return str(cost)
+	
 @app.route('/hlm/login/<uname>/<passw>')
 def login(uname,passw):
 	cur = mysql.connect().cursor()
