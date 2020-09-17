@@ -23,7 +23,7 @@ def EP(distanceIn,reqIn,SOCIN):
 
 	cost['low']=fuzz.trapmf(cost.universe,[2.8,2.9,3,7])
 	cost['medium']=fuzz.trimf(cost.universe,[3,7,10])
-	cost['veryhigh']=fuzz.trapmf(cost.universe,[7,10,10.1,10.2])
+	cost['high']=fuzz.trapmf(cost.universe,[7,10,10.1,10.2])
 
 	rule1 = ctrl.Rule(distance['high'] & req['high'] & soc['high'] , cost['low'])
 	rule2 = ctrl.Rule(distance['high'] & req['high'] & soc['medium'] , cost['high'])
