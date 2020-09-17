@@ -14,7 +14,7 @@ import dispenserHelper as dh
 from flaskext.mysql import MySQL
 
 # import fuzzy
-fromfuzzy import EP
+from fuzzy import EP
 
 #assign a Flask Class
 app=Flask(__name__)
