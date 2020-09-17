@@ -4,28 +4,26 @@ from skfuzzy import control as ctrl
 
 #Energy Purchase from EV
 def EP(distanceIn,reqIn,SOCIN):
-	distance=ctrl.Antecedent(np.arange(0,100,0.25),'distance')
-	req=ctrl.Antecedent(np.arange(6.5,8.5,0.1),'req')
-	soc=ctrl.Antecedent(np.arange(6.5,8.5,0.1),'soc')
-	cost=ctrl.Consequent(np.arange(0,8,0.25),'cost')
+	distance=ctrl.Antecedent(np.arange(0,12,0.25),'distance')
+	req=ctrl.Antecedent(np.arange(0,6,0.1),'req')
+	soc=ctrl.Antecedent(np.arange(40,100,1),'soc')
+	cost=ctrl.Consequent(np.arange(5,10,0.25),'cost')
 
-	distance['low']=fuzz.trapmf(distance.universe,[-0.2,-0.1,0,50])
-	distance['medium']=fuzz.trimf(distance.universe,[0,50,100])
-	distance['high']=fuzz.trapmf(distance.universe,[50,100,100.1,100.2])
+	distance['low']=fuzz.trapmf(distance.universe,[-0.2,-0.1,0,5])
+	distance['medium']=fuzz.trimf(distance.universe,[0,5,10])
+	distance['high']=fuzz.trapmf(distance.universe,[5,10,10.1,10.2])
 
-	req['low']=fuzz.trapmf(req.universe,[-0.2,-0.1,0,120])
-	req['medium']=fuzz.trimf(req.universe,[0,120,360])
-	req['high']=fuzz.trapmf(req.universe,[120,360,360.1,360.2])
+	req['low']=fuzz.trapmf(req.universe,[-0.2,-0.1,0,3])
+	req['medium']=fuzz.trimf(req.universe,[0,3,6])
+	req['high']=fuzz.trapmf(req.universe,[3,6,6.1,6.2])
 
-	soc['low']=fuzz.trapmf(soc.universe,[6.3,6.4,6.5,7.5])
-	soc['medium']=fuzz.trimf(soc.universe,[6.5,7.5,8.5])
-	soc['high']=fuzz.trapmf(soc.universe,[7.5,8.5,9.1,9.2])
+	soc['low']=fuzz.trapmf(soc.universe,[39.8,39.9,40,75])
+	soc['medium']=fuzz.trimf(soc.universe,[40,75,100])
+	soc['high']=fuzz.trapmf(soc.universe,[75,100,100.1,100.2])
 
-	cost['low']=fuzz.trapmf(cost.universe,[-0.2,-0.1,0,2])
-	cost['low']=fuzz.trimf(cost.universe,[0,2,4])
-	cost['medium']=fuzz.trimf(cost.universe,[2,4,6])
-	cost['high']=fuzz.trimf(cost.universe,[4,6,8])
-	cost['veryhigh']=fuzz.trapmf(cost.universe,[6,8,8.1,8.2])
+	cost['low']=fuzz.trapmf(cost.universe,[2.8,2.9,3,7])
+	cost['medium']=fuzz.trimf(cost.universe,[3,7,10])
+	cost['veryhigh']=fuzz.trapmf(cost.universe,[7,10,10.1,10.2])
 
 	rule1 = ctrl.Rule(distance['high'] & req['high'] & soc['high'] , cost['low'])
 	rule2 = ctrl.Rule(distance['high'] & req['high'] & soc['medium'] , cost['high'])
