@@ -9,21 +9,21 @@ def EP(distanceIn,reqIn,SOCIN):
 	soc=ctrl.Antecedent(np.arange(40,100,1),'soc')
 	cost=ctrl.Consequent(np.arange(3,12,0.1),'cost')
 
-	distance['low']=fuzz.trapmf(distance.universe,[-0.2,-0.1,0,4])
-	distance['medium']=fuzz.trimf(distance.universe,[4,8,12])
-	distance['high']=fuzz.trapmf(distance.universe,[8,12,12.1,12.2])
+	distance['low']=fuzz.trapmf(distance.universe,[-0.2,-0.1,0,6])
+	distance['medium']=fuzz.trimf(distance.universe,[0,6,12])
+	distance['high']=fuzz.trapmf(distance.universe,[6,12,12.1,12.2])
 
-	req['low']=fuzz.trapmf(req.universe,[-0.2,-0.1,0,2])
-	req['medium']=fuzz.trimf(req.universe,[2,4,6])
-	req['high']=fuzz.trapmf(req.universe,[4,6,6.1,6.2])
+	req['low']=fuzz.trapmf(req.universe,[-0.2,-0.1,0,3])
+	req['medium']=fuzz.trimf(req.universe,[0,3,6])
+	req['high']=fuzz.trapmf(req.universe,[3,6,6.1,6.2])
 
-	soc['low']=fuzz.trapmf(soc.universe,[39.8,39.9,40,60])
-	soc['medium']=fuzz.trimf(soc.universe,[60,80,100])
-	soc['high']=fuzz.trapmf(soc.universe,[80,100,100.1,100.2])
+	soc['low']=fuzz.trapmf(soc.universe,[39.8,39.9,40,70])
+	soc['medium']=fuzz.trimf(soc.universe,[40,70,100])
+	soc['high']=fuzz.trapmf(soc.universe,[70,100,100.1,100.2])
 
-	cost['low']=fuzz.trapmf(cost.universe,[2.8,2.9,3,6])
-	cost['medium']=fuzz.trimf(cost.universe,[6,9,12])
-	cost['high']=fuzz.trapmf(cost.universe,[9,12,12.1,12.2])
+	cost['low']=fuzz.trapmf(cost.universe,[2.8,2.9,3,7])
+	cost['medium']=fuzz.trimf(cost.universe,[3,7,12])
+	cost['high']=fuzz.trapmf(cost.universe,[7,12,12.1,12.2])
 
 	rule1 = ctrl.Rule(distance['high'] & req['high'] & soc['high'] , cost['low'])
 	rule2 = ctrl.Rule(distance['high'] & req['high'] & soc['medium'] , cost['high'])
