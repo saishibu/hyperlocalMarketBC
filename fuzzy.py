@@ -87,7 +87,7 @@ def EVLoc(radius,noEV):
 		dlat = yLat - y0
 		a = (math.sin(dlat/2))**2 + math.cos(yLat) * math.cos(y0) * (math.sin(dlon/2))**2
 		c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-		distance = 6373.0 * c *1000
+		distance = 6373.0 * c *10
 		soc=random.randint(41, 100)
 		loc.append([xLat,yLat,distance,soc])
 	return loc
