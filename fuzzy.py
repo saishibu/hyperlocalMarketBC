@@ -1,6 +1,9 @@
 import numpy as np
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
+import random
+import sys
+import math
 
 #Energy Purchase from EV
 def EP(distanceIn,reqIn,SOCIN):
@@ -60,3 +63,24 @@ def EP(distanceIn,reqIn,SOCIN):
 	cost.input['req'] = reqIn
 	cost.compute()
 	return(round(cost.output['cost'],3))
+
+
+
+def EVLoc(radius,noEV):
+	loc=[]
+	radiusInDegrees=radius/111300            
+	r = radiusInDegrees
+	x0 = 40.84
+	y0 = -73.87
+
+	for i in range(1,noEV):                 #Choose number of Lat Long to be generated
+		u = float(random.uniform(0.0,1.0))
+		v = float(random.uniform(0.0,1.0))
+		w = r * math.sqrt(u)
+		t = 2 * math.pi * v
+		x = w * math.cos(t) 
+		y = w * math.sin(t)
+		xLat  = x + x0
+		xLat = y + y0
+		loc.append([xLat,xLat])
+	return location
