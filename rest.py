@@ -37,9 +37,9 @@ def welcome():
 def ev2x(in1,in2,in3):
 	cost=EP(int(in1),int(in2),int(in3))
 	return str(cost)
-@app.route('/ep/<in1>/<in2>')
+@app.route('/evloc/<in1>/<in2>')
 def EVLocation(in1,in2):
-	return str(EVLoc(in1,in2))
+	return str(EVLoc(int(in1),int(in2)))
 
 @app.route('/hlm/login/<uname>/<passw>')
 def login(uname,passw):
