@@ -70,7 +70,7 @@ def EVLoc(radius,noEV):
 	loc=[]
 	radiusInDegrees=radius/111300            
 	r = radiusInDegrees
-	x0 = 40.84
+	x0 = 8.84
 	y0 = -73.87
 
 	for i in range(1,noEV):                 #Choose number of Lat Long to be generated
