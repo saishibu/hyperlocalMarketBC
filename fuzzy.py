@@ -85,7 +85,7 @@ def EVLoc(radius,noEV):
 		
 		dlon = xLat - x0
 		dlat = yLat - y0
-		a = (math.sin(dlat/2))**2 + math.cos(lat1) * math.cos(lat2) * (math.sin(math.dlon/2))**2
+		a = (math.sin(dlat/2))**2 + math.cos(yLat) * math.cos(y0) * (math.sin(dlon/2))**2
 		c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
 		distance = 6373.0 * c
 		soc=random.randint(41, 100)
