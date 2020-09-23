@@ -83,4 +83,4 @@ def EVLoc(radius,noEV):
 		xLat  = x + x0
 		xLat = y + y0
 		loc.append([xLat,xLat])
-	return location
+	return loc
