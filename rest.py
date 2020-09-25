@@ -14,7 +14,7 @@ import dispenserHelper as dh
 from flaskext.mysql import MySQL
 
 # import fuzzy
-from fuzzy import EP,EVLoc
+from fuzzy import EV2X,X2EV,EVLoc
 
 #assign a Flask Class
 app=Flask(__name__)
@@ -33,10 +33,16 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 def welcome():
 	return "Welcome to Hyperlocal eMart, Shopping made simple. \n Login to continue."
 
-@app.route('/ep/<in1>/<in2>/<in3>')
+@app.route('/ev2x/<in1>/<in2>/<in3>')
 def ev2x(in1,in2,in3):
-	cost=EP(int(in1),int(in2),int(in3))
+	cost=EV2X(int(in1),int(in2),int(in3))
 	return str(cost)
+
+@app.route('/x2ev/<in1>/<in2>')
+def x2ev(in1,in2,in3):
+	cost=X2EV(int(in1),int(in2))
+	return str(cost)
+
 @app.route('/evloc/<in1>/<in2>')
 def EVLocation(in1,in2):
 	return str(EVLoc(int(in1),int(in2)))
