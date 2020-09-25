@@ -5,8 +5,8 @@ import random
 import sys
 import math
 
-#Energy Purchase from EV
-def EP(distanceIn,reqIn,SOCIN):
+#Energy Purchase from EV2X
+def EV2X(distanceIn,reqIn,SOCIN):
 	distance=ctrl.Antecedent(np.arange(0,12,0.25),'distance')
 	req=ctrl.Antecedent(np.arange(0,6,0.1),'req')
 	soc=ctrl.Antecedent(np.arange(40,100,1),'soc')
@@ -64,7 +64,40 @@ def EP(distanceIn,reqIn,SOCIN):
 	cost.compute()
 	return(round(cost.output['cost'],3))
 
+#X2EV
+def X2EV(distanceIn,socIn):
+	distance=ctrl.Antecedent(np.arange(0,100,0.25),'distance')
+	soc=ctrl.Antecedent(np.arange(6.5,8.5,0.1),'soc')
+	cost=ctrl.Consequent(np.arange(0,8,0.25),'cost')
 
+	distance['low']=fuzz.trapmf(distance.universe,[-0.2,-0.1,0,6])
+	distance['medium']=fuzz.trimf(distance.universe,[0,6,12])
+	distance['high']=fuzz.trapmf(distance.universe,[6,12,12.1,12.2])
+
+	soc['low']=fuzz.trapmf(soc.universe,[39.3,39.4,40,75])
+	soc['medium']=fuzz.trimf(soc.universe,[40,75,100])
+	soc['high']=fuzz.trapmf(soc.universe,[75,100,100.1,100.2])
+
+	cost['low']=fuzz.trapmf(cost.universe,[2.8,2.9,3,7])
+	cost['medium']=fuzz.trimf(cost.universe,[3,7,12])
+	cost['high']=fuzz.trapmf(cost.universe,[7,12,8.1,8.2])
+
+	rule1 = ctrl.Rule(distance['high'] & soc['high'], cost['low'])
+	rule2 = ctrl.Rule(distance['high'] & soc['medium'], cost['medium'])
+	rule3 = ctrl.Rule(distance['high'] & soc['low'], cost['medium'])
+	rule4 = ctrl.Rule(distance['medium'] & soc['high'], cost['medium'])
+	rule5 = ctrl.Rule(distance['medium'] & soc['medium'], cost['medium'])
+	rule6 = ctrl.Rule(distance['medium'] & soc['low'], cost['high'])
+	rule7 = ctrl.Rule(distance['low'] & soc['high'], cost['low'])
+	rule8 = ctrl.Rule(distance['low'] & soc['medium'], cost['high'])
+	rule9 = ctrl.Rule(distance['low'] & soc['low'], cost['high'])
+
+	cost_ctrl = ctrl.ControlSystem([rule1, rule2, rule3, rule4, rule5,rule6,rule7,rule8,rule9])
+	cost = ctrl.ControlSystemSimulation(cost_ctrl)
+	cost.input['distance'] = distanceIn
+	cost.input['soc'] = socIn
+	cost.compute()
+	return(round(cost.output['cost'],3))
 
 def EVLoc(radius,noEV):
 	loc=[]
