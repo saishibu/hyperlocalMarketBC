@@ -80,7 +80,7 @@ def X2EV(distanceIn,socIn):
 
 	cost['low']=fuzz.trapmf(cost.universe,[2.8,2.9,3,7])
 	cost['medium']=fuzz.trimf(cost.universe,[3,7,12])
-	cost['high']=fuzz.trapmf(cost.universe,[7,12,8.1,8.2])
+	cost['high']=fuzz.trapmf(cost.universe,[7,12,12.1,12.2])
 
 	rule1 = ctrl.Rule(distance['high'] & soc['high'], cost['low'])
 	rule2 = ctrl.Rule(distance['high'] & soc['medium'], cost['medium'])
