@@ -66,12 +66,12 @@ def EV2X(distanceIn,reqIn,SOCIN):
 
 #X2EV
 def X2EV(distanceIn,socIn):
-	distance=ctrl.Antecedent(np.arange(0,100,0.25),'distance')
-	soc=ctrl.Antecedent(np.arange(6.5,8.5,0.1),'soc')
-	cost=ctrl.Consequent(np.arange(0,8,0.25),'cost')
+	distance=ctrl.Antecedent(np.arange(0,12,0.1),'distance')
+	soc=ctrl.Antecedent(np.arange(40,100,1),'soc')
+	cost=ctrl.Consequent(np.arange(3,12,0.25),'cost')
 
-	distance['low']=fuzz.trapmf(distance.universe,[-0.2,-0.1,0,6])
-	distance['medium']=fuzz.trimf(distance.universe,[0,6,12])
+	distance['low']=fuzz.trapmf(distance.universe,[-0.2,-0.1,1,6])
+	distance['medium']=fuzz.trimf(distance.universe,[1,6,12])
 	distance['high']=fuzz.trapmf(distance.universe,[6,12,12.1,12.2])
 
 	soc['low']=fuzz.trapmf(soc.universe,[39.3,39.4,40,75])
