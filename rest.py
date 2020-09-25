@@ -39,7 +39,7 @@ def ev2x(in1,in2,in3):
 	return str(cost)
 
 @app.route('/x2ev/<in1>/<in2>')
-def x2ev(in1,in2,in3):
+def x2ev(in1,in2):
 	cost=X2EV(int(in1),int(in2))
 	return str(cost)
 
